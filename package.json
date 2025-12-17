@@ -1,0 +1,26 @@
+{
+  "name": "book-finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "start": "node dist/main.js",
+  "build": "tsc",
+  "format": "prettier --write \"src/**/*.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/medea-shartava/book-finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/medea-shartava/book-finder/issues"
+  },
+  "homepage": "https://github.com/medea-shartava/book-finder#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
