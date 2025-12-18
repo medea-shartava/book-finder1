@@ -1,21 +1,12 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { searchBook } from "./api.js";
 const form = document.getElementById("bookForm");
 const input = document.getElementById("bookInput");
 // console.log("Main.ts loaded");
 // console.log("Form:", form);
-form.addEventListener("submit", (event) => __awaiter(void 0, void 0, void 0, function* () {
+form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const query = input.value;
-    const books = yield searchBook(query);
+    const books = await searchBook(query);
     // console.log("Form query:", query);
     // console.log(books);
     const results = document.getElementById("results");
@@ -37,4 +28,4 @@ form.addEventListener("submit", (event) => __awaiter(void 0, void 0, void 0, fun
         }
         results.appendChild(bookDiv);
     });
-}));
+});

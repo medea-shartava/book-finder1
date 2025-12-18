@@ -1,25 +1,23 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
+// import { Book } from "./book.js";
+export class Book {
+    constructor(title, author, year, coverUrl) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.cover = coverUrl;
+    }
+}
+export async function searchBook(query) {
+    const promise = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`);
+    let result = await promise.json();
+    // console.log(result.docs);
+    const books = result.docs.slice(0, 5).map((doc) => {
+        return new Book(doc.title, doc.author_name ? doc.author_name.join(", ") : "Unknown", doc.first_publish_year ?? "Unknown", doc.cover_i
+            ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`
+            : null);
     });
-};
-import { Book } from "./book.js";
-export function searchBook(query) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const promise = yield fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`);
-        let result = yield promise.json();
-        // console.log(result.docs);
-        const books = result.docs.slice(0, 5).map((doc) => {
-            var _a;
-            return new Book(doc.title, doc.author_name ? doc.author_name.join(", ") : "Unknown", (_a = doc.first_publish_year) !== null && _a !== void 0 ? _a : "Unknown", doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg` : null);
-        });
-        // console.log(books);
-        return books;
-    });
+    // console.log(books);
+    return books;
 }
 // const query: string = "metamorphosis"
 // searchBook(query);

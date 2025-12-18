@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "start": "node dist/main.js",
-  "build": "tsc",
-  "format": "prettier --write \"src/**/*.ts\""
+    "start": "node dist/main.js",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -15,12 +17,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/medea-shartava/book-finder/issues"
   },
   "homepage": "https://github.com/medea-shartava/book-finder#readme",
   "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
     "typescript": "^5.9.3"
   }
 }
