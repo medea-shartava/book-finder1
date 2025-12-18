@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { Book } from "./book.js";
 export function searchBook(query) {
     return __awaiter(this, void 0, void 0, function* () {
         const promise = yield fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`);
@@ -14,12 +15,7 @@ export function searchBook(query) {
         // console.log(result.docs);
         const books = result.docs.slice(0, 5).map((doc) => {
             var _a;
-            return {
-                title: doc.title,
-                author: doc.author_name ? doc.author_name.join(", ") : "Unknown",
-                year: (_a = doc.first_publish_year) !== null && _a !== void 0 ? _a : "Unknown",
-                cover: doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg` : null
-            };
+            return new Book(doc.title, doc.author_name ? doc.author_name.join(", ") : "Unknown", (_a = doc.first_publish_year) !== null && _a !== void 0 ? _a : "Unknown", doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg` : null);
         });
         // console.log(books);
         return books;
